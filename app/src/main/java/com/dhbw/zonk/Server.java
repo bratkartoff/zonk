@@ -69,7 +69,11 @@ class Server extends Thread {
 	}
 
 	synchronized Boolean isValidThreadID(long id) {
-		return clients.stream().anyMatch(client -> client != null && client.getID() == id);
+		for (var client : clients) {
+			if (client != null && client.getID() == id)
+				return true;
+		}
+		return false;
 	}
 
 	private void log(String msg) { Log.v("Server", msg); }
