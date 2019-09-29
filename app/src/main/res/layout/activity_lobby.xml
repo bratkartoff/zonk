@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".Lobby">
 
+    <LinearLayout
+        android:id="@+id/lobbyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

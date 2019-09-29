@@ -3,6 +3,7 @@ package com.dhbw.zonk;
 import java.net.*;
 import java.io.*;
 import java.util.*;
+
 import android.util.*;
 
 class Server extends Thread {
@@ -10,14 +11,21 @@ class Server extends Thread {
 	private ServerSocket srvSck = null;
 	private LinkedList<ClientWorker> clients = new LinkedList<>();
 	private long clientID = 0;
+	private final Lobby context;
 
-	Server(int port) {
+	Server(Lobby context, int port) {
+		this.context = context;
 		this.port = port;
 	}
 
 	public void run() {
 		try {
 			srvSck = new ServerSocket(port);
+			//display ip address
+			context.runOnUiThread(() -> {
+				//this runs on the main thread (ui thread)
+					context.displayText(srvSck.getInetAddress().toString());
+			});
 			while (true) {
 				log("Listening for client");
 				try {
