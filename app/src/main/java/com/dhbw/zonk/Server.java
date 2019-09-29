@@ -69,7 +69,7 @@ class Server extends Thread {
 	}
 
 	synchronized Boolean isValidThreadID(long id) {
-		for (var client : clients) {
+		for (ClientWorker client : clients) {
 			if (client != null && client.getID() == id)
 				return true;
 		}
