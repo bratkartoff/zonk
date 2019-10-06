@@ -4,6 +4,8 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
+import android.content.Context;
+import android.net.wifi.WifiManager;
 import android.util.*;
 
 class Server extends Thread {
@@ -21,10 +23,19 @@ class Server extends Thread {
 	public void run() {
 		try {
 			srvSck = new ServerSocket(port);
+			//get ip address
+			//java is not my favorite language
+			WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+			int ipInt = wm.getConnectionInfo().getIpAddress();
+			String ipAddr;
+			if (ipInt != 0)
+				ipAddr = String.format("%d.%d.%d.%d", ipInt % 256, (ipInt >> 8) % 256, (ipInt >> 16) % 256, (ipInt >> 24) % 256);
+			else
+				ipAddr = "Unknown";
 			//display ip address
 			context.runOnUiThread(() -> {
 				//this runs on the main thread (ui thread)
-					context.displayText(srvSck.getInetAddress().toString());
+				context.displayText(ipAddr);
 			});
 			while (true) {
 				log("Listening for client");
