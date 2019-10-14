@@ -12,9 +12,33 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="88dp"
         android:onClick="buttonLobbyClick"
         android:text="start server"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="158dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:onClick="buttonConnectClick"
+        android:text="Connect"
+        app:layout_constraintStart_toEndOf="@+id/editTextIp"
+        app:layout_constraintTop_toTopOf="@+id/editTextIp" />
+
+    <EditText
+        android:id="@+id/editTextIp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="0.0.0.0"
+        app:layout_constraintStart_toStartOf="@+id/buttonLobby"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLobby" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
