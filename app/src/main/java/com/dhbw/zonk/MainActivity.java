@@ -1,6 +1,9 @@
 package com.dhbw.zonk;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
@@ -9,36 +12,29 @@ import android.widget.EditText;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import android.view.View;
+import android.content.Intent;
+import android.widget.Button;
+import android.view.View;
+import android.content.Intent;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-	}
 
-	// Switch to lobby activity
-	public void buttonLobbyClick(View view) {
-		Intent i = new Intent(this, Lobby.class);
-		startActivity(i);
-	}
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-	public void buttonConnectClick(View view) {
-		// get ip address string from text field
-		EditText editTextIp = findViewById(R.id.editTextIp);
-		String ipString = editTextIp.getText().toString();
-		// try to convert it to InetAddress
-		InetAddress remoteHost;
-		try {
-			remoteHost = Inet4Address.getByName(ipString);
-		} catch (UnknownHostException e) {
-			// Not a valid ip address: do nothing (for now) todo
-			return;
-		}
+    }
 
-		// start lobby
-		Intent i = new Intent(this, Lobby.class);
-		i.putExtra("remoteHost", remoteHost);
-		startActivity(i);
-	}
+    @SuppressLint("ResourceType")
+    public void onClickButton (View view) {
+        Intent intent = new Intent(this, Hauptmenue.class);
+        startActivity(intent);
+
+    }
+
+
+
 }

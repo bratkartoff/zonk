@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Lobby"></activity>
+        <activity android:name=".Spiel_beitreten"></activity>
+        <activity android:name=".Hauptmenue" />
+        <activity android:name=".Seite2" />
+        <activity android:name=".Lobby" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
