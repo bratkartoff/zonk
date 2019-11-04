@@ -29,21 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("ResourceType")
     public void onClickButton (View view) {
-        // get ip address string from text field
-        EditText editTextIp = findViewById(R.id.accessCode);
-        String ipString = editTextIp.getText().toString();
-        // try to convert to InetAddress
-        InetAddress remoteHost;
-        try {
-            remoteHost = Inet4Address.getByName(ipString);
-        } catch (UnknownHostException e) {
-            // todo: error message
-            return;
-        }
-
         // start lobby
         Intent intent = new Intent(this, Hauptmenue.class);
-        intent.putExtra("remoteHost", remoteHost);
         startActivity(intent);
     }
 
