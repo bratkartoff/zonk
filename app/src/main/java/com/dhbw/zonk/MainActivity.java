@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("ResourceType")
-    public void onClickButton (View view) {
+    public void onClickStart (View view) {
         Intent intent = new Intent(this, Hauptmenue.class);
         startActivity(intent);
 

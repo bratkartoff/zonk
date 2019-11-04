@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main2"
+    android:background="@drawable/hintergrund"
     tools:context=".Hauptmenue">
 
     <Button
@@ -18,7 +18,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:onClick="onClickButton1"
+        android:onClick="onClickSpielbeitreten"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -43,6 +43,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/rounded_button"
         android:text="Spiel generien"
+        android:onClick="onClickspielgenerieren"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/white"
         android:textSize="20sp"
@@ -54,8 +55,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hauptmenü"
-        android:textColor="@android:color/background_dark"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

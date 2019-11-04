@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Spiel_beitreten"></activity>
+        <activity android:name=".ParameterEinstellen"></activity>
+        <activity android:name=".Spiel_beitreten" />
         <activity android:name=".Hauptmenue" />
         <activity android:name=".Seite2" />
         <activity android:name=".Lobby" />
