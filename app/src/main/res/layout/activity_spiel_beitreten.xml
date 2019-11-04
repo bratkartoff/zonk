@@ -28,6 +28,8 @@
         android:id="@+id/accessCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="Underline color change"
+        android:backgroundTint="@android:color/white"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="176dp"
@@ -45,7 +47,7 @@
         android:layout_marginTop="176dp"
         android:text="Code:"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#050505"
+        android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toStartOf="@+id/accessCode"
         app:layout_constraintTop_toTopOf="parent" />
 
