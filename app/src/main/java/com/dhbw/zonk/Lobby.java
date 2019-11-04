@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.IOException;
+import com.dhbw.zonk.networking.Client;
+import com.dhbw.zonk.networking.Server;
+
 import java.net.InetAddress;
 
 public class Lobby extends AppCompatActivity {
-	private static final int PORT = 20043;
+	private static final int port = 20043;
 
-	private Server srv = null;
 	private Client client = null;
 
 	@Override
@@ -24,12 +25,12 @@ public class Lobby extends AppCompatActivity {
 		InetAddress remoteHost = (InetAddress) getIntent().getSerializableExtra("remoteHost");
 		if (remoteHost != null) {
 			// initialize client
-			client = new Client(remoteHost, PORT);
+			client = new Client(remoteHost, port);
 			client.start();
 		} else {
 			// no? start a server
-			srv = new Server(this, PORT);
-			srv.start();
+			Server.getInstance().setPort(port);
+			Server.getInstance().start();
 		}
 	}
 
@@ -37,9 +38,11 @@ public class Lobby extends AppCompatActivity {
 		super.onDestroy();
 
 		if (isHost())
-			srv.stopListening();
+			Server.reset();
 	}
 
+	// display ip address
+	// todo: move somewhere else
 	public void displayText(String str) {
 		LinearLayout linLayout = this.findViewById(R.id.lobbyLayout);
 		TextView text = new TextView(this);
@@ -48,6 +51,6 @@ public class Lobby extends AppCompatActivity {
 	}
 
 	private boolean isHost() {
-		return srv != null;
+		return Server.getInstance().isAlive();
 	}
 }
