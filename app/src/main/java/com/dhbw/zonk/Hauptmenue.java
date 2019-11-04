@@ -17,7 +17,6 @@ public class Hauptmenue extends AppCompatActivity {
     public void onClickSpielbeitreten (View view) {
         Intent intent = new Intent(this, Spiel_beitreten.class);
         startActivity(intent);
-
     }
 
     public void onClickspielgenerieren (View view) {
