@@ -23,7 +23,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonStart"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="162dp"
         android:layout_height="70dp"

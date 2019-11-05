@@ -23,12 +23,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonStart"
         android:layout_width="135dp"
         android:layout_height="60dp"
         android:layout_marginStart="236dp"
         android:layout_marginTop="530dp"
         android:background="@drawable/rounded_button"
+        android:onClick="onClickButtonStart"
         android:text="starten"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/white"
@@ -127,7 +128,7 @@
         android:layout_height="38dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="10dp"
-        android:text="Anzahl Stabel:"
+        android:text="Anzahl Stapel:"
         android:textColor="@android:color/background_light"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
