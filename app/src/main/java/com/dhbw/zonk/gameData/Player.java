@@ -11,5 +11,5 @@ public class Player implements Serializable {
 		this.hand = hand;
 	}
 
-	public String getName() { return name; }
+	public String getName() { return name; };
 }

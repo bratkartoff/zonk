@@ -11,7 +11,7 @@ public class GameState implements Serializable {
 	private ArrayList<CardStack> stacks = new ArrayList<>();
 	private boolean started = false;
 
-	private GameState() {}
+	public GameState() {} //why was the constructor private before?
 
 	public static GameState getInstance() {
 		if (instance == null)
@@ -40,8 +40,6 @@ public class GameState implements Serializable {
 		Collections.shuffle(Arrays.asList(cards));
 
 		// todo distribute cards on stacks and hands
-		// todo get player function
-		// todo get stack function
 		started = true;
 	}
 
@@ -58,4 +56,30 @@ public class GameState implements Serializable {
 	public void addPlayer(Player player) {
 		players.add(player);
 	}
+
+	public int get_count_of_players(){
+		return players.size();
+	}
+
+	public int get_count_of_stacks(){
+		return stacks.size();
+	}
+
+	public Player get_player(int index){
+		if(index < players.size()) {
+			return (players.get(index));
+		}else{
+			return null;
+		}
+	}
+
+	public CardStack get_cardstack(int index){
+		if(index < stacks.size()) {
+			return (stacks.get(index));
+		}else{
+			return null;
+		}
+	}
+
+
 }

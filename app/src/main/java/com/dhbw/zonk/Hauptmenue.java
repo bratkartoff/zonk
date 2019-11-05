@@ -23,4 +23,9 @@ public class Hauptmenue extends AppCompatActivity {
         Intent intent = new Intent(this, ParameterEinstellen.class);
         startActivity(intent);
     }
+
+    public void onClickspieltest (View view){
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
 }
