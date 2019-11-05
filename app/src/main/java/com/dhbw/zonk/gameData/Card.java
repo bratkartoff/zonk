@@ -5,11 +5,12 @@ class Card {
 
 	private final int rank;
 	private final suit suit;
-	// todo: picture
+	private String picture;
 
-	Card(int rank, suit suit) {
+	Card(int rank, suit suit, String picture) {
 		this.rank = rank;
 		this.suit = suit;
+		this.picture = picture;
 	}
 
 	public Card.suit getSuit() {
@@ -19,4 +20,6 @@ class Card {
 	public int getRank() {
 		return rank;
 	}
+
+	public String getPicture() {return picture;}
 }

@@ -32,7 +32,7 @@ public class GameState implements Serializable {
 		Card[] cards = new Card[52];
 		for (Card.suit suit : Card.suit.values()) {
 			for (int rank = 2; rank < 15; rank++) {
-				cards[suit.ordinal() * 13 + rank] = new Card(rank, suit);
+				cards[suit.ordinal() * 13 + rank] = new Card(rank, suit, null);
 			}
 		}
 
