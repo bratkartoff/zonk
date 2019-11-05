@@ -4,4 +4,4 @@ port=20043
 
 (echo auth $(cat ~/.emulator_console_auth_token)
 echo redir del tcp:$port
-echo quit) | nc localhost 5554
+echo quit) | telnet 127.0.0.1 5554
