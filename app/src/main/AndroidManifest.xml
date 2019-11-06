@@ -12,7 +12,9 @@
         android:roundIcon="@drawable/iconrund"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ParameterEinstellen"></activity>
+        <activity android:name=".spielspeichern"></activity>
+        <activity android:name=".Einstellungen" />
+        <activity android:name=".ParameterEinstellen" />
         <activity android:name=".Spiel_beitreten" />
         <activity android:name=".Hauptmenue" />
         <activity android:name=".Seite2" />
