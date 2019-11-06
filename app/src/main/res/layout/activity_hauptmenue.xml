@@ -11,14 +11,14 @@
         android:id="@+id/button6"
         android:layout_width="162dp"
         android:layout_height="70dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="92dp"
         android:background="@drawable/rounded_button"
+        android:onClick="onClickSpielbeitreten"
         android:text="Spiel beitreten"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:onClick="onClickSpielbeitreten"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
