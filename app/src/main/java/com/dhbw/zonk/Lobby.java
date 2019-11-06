@@ -41,15 +41,6 @@ public class Lobby extends AppCompatActivity {
 			Server.reset();
 	}
 
-	// display ip address
-	// todo: move somewhere else
-	public void displayText(String str) {
-		LinearLayout linLayout = this.findViewById(R.id.lobbyLayout);
-		TextView text = new TextView(this);
-		text.setText(str);
-		linLayout.addView(text);
-	}
-
 	private boolean isHost() {
 		return Server.getInstance().isAlive();
 	}
