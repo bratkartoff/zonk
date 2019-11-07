@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.pytonmusic);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.unomusik);
         mediaPlayer.setLooping(true);
     }
 
