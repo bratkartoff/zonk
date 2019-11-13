@@ -242,6 +242,7 @@
         android:layout_marginTop="530dp"
         android:background="@drawable/rounded_button"
         android:text="speichern"
+        android:onClick="onClickButtonspeichern"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/white"
         android:textSize="24sp"

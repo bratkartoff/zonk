@@ -20,4 +20,11 @@ public class ParameterEinstellen extends AppCompatActivity {
         Intent intent = new Intent(this, Lobby.class);
         startActivity(intent);
     }
+    public void onClickButtonspeichern(View v) {
+        // todo: check parameters and pass to gameState
+        // start lobby
+        Intent intent = new Intent(this, spielspeichern.class);
+        startActivity(intent);
+    }
+
 }
