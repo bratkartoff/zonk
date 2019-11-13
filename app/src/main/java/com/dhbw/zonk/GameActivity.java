@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.*;
 
+import java.util.Random;
+
 import android.media.Image;
 import android.os.Bundle;
 import android.view.VelocityTracker;
@@ -90,7 +92,7 @@ public class GameActivity extends AppCompatActivity {
 
 
         public boolean onTouch(View view, MotionEvent event){
-            if(event.getAction() == MotionEvent.ACTION_DOWN && can_drag){ //MotionEvent.ACTION_DOWN might work better
+            if(event.getAction() == MotionEvent.ACTION_DOWN && (can_drag || view == stack_one)){ //MotionEvent.ACTION_DOWN might work better
                 //Preparing the Drag, no idea what the code does actually...
                 ClipData data = ClipData.newPlainText("","");
                 DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
@@ -120,9 +122,61 @@ public class GameActivity extends AppCompatActivity {
                     View droppedView = (View) dragEvent.getLocalState();
                     View destinationView = (View) view;
                     if(droppedView == stack_one && destinationView == user_cards){
-                        addToHand(stack_one);
+
+                        //generation of a random card
+                        //java.lang.String cardType = "c01";
+                        Random random_gen = new Random();
+                        char card_point_1;
+                        char card_point_2;
+                        char card_point_3;
+                        int random_int = random_gen.nextInt(4);
+                        switch(random_int){
+                            case 0:
+                                card_point_1 = 'c';
+                                break;
+                            case 1:
+                                card_point_1 = 'd';
+                                break;
+                            case 2:
+                                card_point_1 = 'h';
+                                break;
+                            case 3:
+                                card_point_1 = 's';
+                                break;
+
+                            default: card_point_1 = 'c';
+                        }
+                        card_point_2 = (char)(random_gen.nextInt(2) +48);
+                        if(card_point_2 == 48){
+                            card_point_3 = (char) (random_gen.nextInt(9)+1+48);
+                        }else{
+                            card_point_3 = (char) (random_gen.nextInt(4)+48);
+                        }
+
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(card_point_1);
+                        sb.append(card_point_2);
+                        sb.append(card_point_3);
+                        String cardType = sb.toString();
+
+                        Log.d("State", "cardType: " + cardType);
+
+
+                        int tmp = (int)cardType.charAt(0);
+                        int cardId = Integer.valueOf(String.valueOf(tmp) + String.valueOf(cardType.charAt(1)) + String.valueOf(cardType.charAt(1)));
+                        ImageView newCard = new ImageView(getApplicationContext());
+                        newCard.setImageResource(getResources().getIdentifier(cardType, "drawable",getPackageName()));
+                        newCard.setId(cardId);
+                        newCard.setTag(cardType);
+                        newCard.setLayoutParams(new LayoutParams(300, LayoutParams.WRAP_CONTENT));
+                        newCard.setOnTouchListener(new CardPickupListener());
+
+
+                        addToHand(newCard);
                     }else if(droppedView != stack_one && destinationView == stack_one){
                         deleteFromHand(droppedView);
+                    }else{
+                        return false;
                     }
 
                     //todo Implement "Movement of card" between Hands and Stacks
@@ -154,18 +208,9 @@ public class GameActivity extends AppCompatActivity {
         CardViewList.add(newCard);
     }*/
 
-    public void addToHand(View view) //todo maybe delete le old version and 
+    public void addToHand(ImageView newCard) //todo maybe delete le old version and
     {
-        java.lang.String cardType = "c01";
-        int tmp = (int)cardType.charAt(0);
-        int cardId = Integer.valueOf(String.valueOf(tmp) + String.valueOf(cardType.charAt(1)) + String.valueOf(cardType.charAt(1)));
         LinearLayout scrollview = (LinearLayout) findViewById(R.id.Karten);
-        ImageView newCard = new ImageView(this);
-        newCard.setImageResource(getResources().getIdentifier(cardType, "drawable",getPackageName()));
-        newCard.setId(cardId);
-        newCard.setTag(cardType);
-        newCard.setLayoutParams(new LayoutParams(300, LayoutParams.WRAP_CONTENT));
-        newCard.setOnTouchListener(new CardPickupListener());
         scrollview.addView(newCard);
         CardViewList.add(newCard);
     }
