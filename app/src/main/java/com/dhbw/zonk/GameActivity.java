@@ -10,6 +10,7 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -38,8 +39,8 @@ public class GameActivity extends AppCompatActivity {
     private static final String DEBUG_TAG = "Velocity";
     private VelocityTracker mVelocityTracker = null;
 
-    private float x_velocity;
-    private float y_velocity;
+    ImageView stack_one;
+    FrameLayout user_cards;
 
     private boolean can_drag = true;
 
@@ -50,6 +51,13 @@ public class GameActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        stack_one = (ImageView) findViewById(R.id.imageViewStack1);
+        stack_one.setOnDragListener(new CardDropListener());
+        stack_one.setOnTouchListener(new CardPickupListener());
+
+        user_cards = (FrameLayout) findViewById(R.id.frameLayout);
+        user_cards.setOnDragListener(new CardDropListener());
 
         if(gameState == null){ //Prevent Runtimeexceptions
             gameState = new GameState();
@@ -111,6 +119,12 @@ public class GameActivity extends AppCompatActivity {
                 case DragEvent.ACTION_DROP:
                     View droppedView = (View) dragEvent.getLocalState();
                     View destinationView = (View) view;
+                    if(droppedView == stack_one && destinationView == user_cards){
+                        addToHand(stack_one);
+                    }else if(droppedView != stack_one && destinationView == stack_one){
+                        deleteFromHand(droppedView);
+                    }
+
                     //todo Implement "Movement of card" between Hands and Stacks
 
                     break;
@@ -124,7 +138,23 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    public void addToHand(View view)
+    /*public void addToHand(View view)
+    {
+        java.lang.String cardType = "c01";
+        int tmp = (int)cardType.charAt(0);
+        int cardId = Integer.valueOf(String.valueOf(tmp) + String.valueOf(cardType.charAt(1)) + String.valueOf(cardType.charAt(1)));
+        LinearLayout scrollview = (LinearLayout) findViewById(R.id.Karten);
+        ImageView newCard = new ImageView(this);
+        newCard.setImageResource(getResources().getIdentifier(cardType, "drawable",getPackageName()));
+        newCard.setId(cardId);
+        newCard.setTag(cardType);
+        newCard.setLayoutParams(new LayoutParams(300, LayoutParams.WRAP_CONTENT));
+        newCard.setOnTouchListener(new CardPickupListener());
+        scrollview.addView(newCard);
+        CardViewList.add(newCard);
+    }*/
+
+    public void addToHand(View view) //todo maybe delete le old version and 
     {
         java.lang.String cardType = "c01";
         int tmp = (int)cardType.charAt(0);
@@ -141,13 +171,16 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void deleteFromHand(View view) {
-        java.lang.String cardType = "c01";
+        /*java.lang.String cardType = "c01";
         int tmp = (int)cardType.charAt(0);
         int cardId = Integer.valueOf(String.valueOf(tmp) + String.valueOf(cardType.charAt(1)) + String.valueOf(cardType.charAt(1)));
         LinearLayout scrollview = (LinearLayout) findViewById(R.id.Karten);
         ImageView Card_to_remove = findViewById(cardId);
         scrollview.removeView(Card_to_remove);
-        CardViewList.remove(Card_to_remove);
+        CardViewList.remove(Card_to_remove);*/
+        LinearLayout scrollview = (LinearLayout) findViewById(R.id.Karten);
+        scrollview.removeView(view);
+        CardViewList.remove(view);
     }
 }
 
