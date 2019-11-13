@@ -6,6 +6,7 @@ import java.util.*;
 
 import android.media.Image;
 import android.os.Bundle;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,15 +26,27 @@ import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
 import android.widget.TextView;
 
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.util.Log;
+
 import com.dhbw.zonk.gameData.GameState;
 
 public class GameActivity extends AppCompatActivity {
     private List<ImageView> CardViewList = new ArrayList<ImageView>();
     //private List<ImageView> CardstackViewList = new ArrayList<ImageView>(); todo sinnvoll?
     private GameState gameState;
+    private static final String DEBUG_TAG = "Velocity";
+    private VelocityTracker mVelocityTracker = null;
+
+    private float x_velocity;
+    private float y_velocity;
+
+    private boolean can_drag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.d("State", "this is a test!");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
@@ -58,14 +71,23 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    public boolean switch_between_drag_and_scroll(View view){
+        can_drag = !can_drag;
+        return true;
+    }
+
+
+
     private final class CardPickupListener implements OnTouchListener{
-        public boolean onTouch(View view, MotionEvent motionEvent){
-            if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+
+
+        public boolean onTouch(View view, MotionEvent event){
+            if(event.getAction() == MotionEvent.ACTION_DOWN && can_drag){ //MotionEvent.ACTION_DOWN might work better
                 //Preparing the Drag, no idea what the code does actually...
                 ClipData data = ClipData.newPlainText("","");
                 DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 //start dragging el cardino
-                view.startDragAndDrop(data, shadowBuilder, view, 0); //view.startDrag() is deprecated, maybe it wont work with the new version...
+                view.startDragAndDrop(data, shadowBuilder, view, 0);
                 return true;
             }else{
                 return false;

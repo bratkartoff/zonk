@@ -1,7 +1,6 @@
 package com.dhbw.zonk.networking;
 
 import com.dhbw.zonk.gameData.GameState;
-import com.dhbw.zonk.gameData.Hand;
 import com.dhbw.zonk.gameData.Player;
 
 import java.io.Serializable;
@@ -21,7 +20,7 @@ class ClientHello extends Message {
 
 	// always processed on the server
 	void process() {
-		GameState.getInstance().addPlayer(new Player(username, new Hand()));
+		GameState.getInstance().addPlayer(new Player(username));
 	}
 
 	boolean isValid(long playerID) {

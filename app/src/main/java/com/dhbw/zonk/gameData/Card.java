@@ -1,8 +1,11 @@
 package com.dhbw.zonk.gameData;
 
+import android.media.Image;
 import android.widget.ImageView;
+import java.io.Serializable;
+//import android.support.v7.widget.AppCompatImageView;
 
-class Card {
+class Card extends ImageView implements Serializable {
 	enum suit { hearts, diamonds, clubs, spades }
 
 	private final int rank;
