@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import java.io.Serializable;
 //import android.support.v7.widget.AppCompatImageView;
 
-class Card extends ImageView implements Serializable {
+class Card implements Serializable {
 	enum suit { hearts, diamonds, clubs, spades }
 
 	private final int rank;
